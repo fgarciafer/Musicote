@@ -22,6 +22,7 @@ export class AppComponent implements OnInit{
   public url: string;
   public busqueda;
   public search;
+  public cambio;
 
   constructor(
     private _userService:UserService,
