@@ -1,0 +1,32 @@
+<div class="titulo-albums">
+    <h1>{{titulo}}</h1>
+</div>
+ <ul class="pagination pull-right paginacion-albums">
+     <li><a [routerLink]="['/albums/'+prev_page]">&laquo;</a></li>
+     <li><a [routerLink]="['/albums/'+next_page]">&raquo;</a></li>
+</ul>
+<div class="clearfix"></div>
+<div id="gallery-albums" *ngIf="albums">
+    <ul class="album-list">
+        <li *ngFor="let album of albums" class="col-lg-4 albums-item">
+            <div class="album-image">
+                <img src="{{url + 'get-image-album/' + album.image}}"/>
+            </div>
+            <div class="album-name">
+                <p>
+                    <a [routerLink]="['/album', album._id]">
+                        {{album.title}}
+                    </a>
+                </p>
+                <p>
+                    <a [routerLink]="['/artista', album.artist._id]">
+                        {{album.artist.name}}
+                    </a>
+                </p>
+
+            </div>
+        </li>
+    </ul>
+    <div class="clearfix"></div>
+</div>
+

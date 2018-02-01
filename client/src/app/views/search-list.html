@@ -1,0 +1,71 @@
+<h1>Resultados de la busqueda para '{{search}}'</h1>
+<hr/>
+<div class="caja-busqueda">
+    <div *ngIf="songs">
+        <span class="glyphicon glyphicon-music titulo-search" aria-hidden="true"> Canciones</span>
+         <ul class="pagination pull-right paginacion-albums">
+            <li><a [routerLink]="" (click)="anteriorCancion()">&laquo;</a></li>
+            <li><a [routerLink]="" (click)="siguienteCancion()">&raquo;</a></li>
+        </ul>
+        <ul>
+            <li *ngFor="let song of songs" class="song-item-search">
+                <div class="title">
+                    <a class="btn btn-success" (click)="startPlayer(song)">
+                        <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                    </a>
+                    {{song.number+ '. '+song.name+' - '+song.duration}} || {{song.album.title}} || {{song.album.artist.name}}
+                    <div class="clearfix"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <hr/>
+
+    <div *ngIf="albums">
+        <span class="glyphicon glyphicon-cd titulo-search" aria-hidden="true"> Albums</span>
+         <ul class="pagination pull-right paginacion-albums">
+            <li><a [routerLink]="" (click)="anteriorAlbum()">&laquo;</a></li>
+            <li><a [routerLink]="" (click)="siguienteAlbum()">&raquo;</a></li>
+        </ul>
+        <ul class="album-list-search">
+            <li *ngFor="let album of albums" class="col-lg-4 albums-item">
+                <div class="album-image">
+                    <img src="{{url + 'get-image-album/' + album.image}}"/>
+                </div>
+                <div class="album-name">
+                    <p>
+                        <a [routerLink]="['/album', album._id]">
+                            {{album.title}}
+                        </a>
+                    </p>
+                    <p>
+                        <a [routerLink]="['/artista', album.artist._id]">
+                            {{album.artist.name}}
+                        </a>
+                    </p>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+<hr/>
+    <div *ngIf="artists">
+        <span class="glyphicon glyphicon-globe titulo-search" aria-hidden="true"> Artistas</span>
+         <ul class="pagination pull-right paginacion-albums">
+            <li><a [routerLink]="" (click)="anteriorArtista()">&laquo;</a></li>
+            <li><a [routerLink]="" (click)="siguienteArtista()">&raquo;</a></li>
+        </ul>
+        <ul class="artist-list" *ngIf="identity">
+        <li *ngFor="let artist of artists" class="col-lg-3 artist-item">
+            <div class="artist-image">
+                <img src="{{url + 'get-image-artist/' + artist.image}}"/>
+            </div>
+            <div class="artist-name">
+                <a [routerLink]="['/artista', artist._id]">
+                    {{artist.name}}
+                </a>
+            </div>
+        </li>
+    </ul>
+    </div>
+</div>
